@@ -1,11 +1,15 @@
 <div class="main">
   <h1>Mozilla Dev - My To Do List</h1>
   <input class="lg-text-input" #campoNovoItem />
-  <button class="btn-primary" (click)="CREATE_tarefa(campoNovoItem.value)">
+  <button class="btn-primary" (click)="CREATE_tarefa(campoNovoItem.value); campoNovoItem.value = ''">
     Adicionar Tarefa
   </button>
-  <ul>
-    <!-- ✅ Tarefas() com parênteses para ler o Signal -->
+
+  <div *ngIf="carregando()">
+    ⏳ Aguarde, conectando ao servidor... (pode levar até 50 segundos)
+  </div>
+
+  <ul *ngIf="!carregando()">
     <li *ngFor="let tarefaDoLoop of Tarefas()">
       <app-item
         [tarefa]="tarefaDoLoop"

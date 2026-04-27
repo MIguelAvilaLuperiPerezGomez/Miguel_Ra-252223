@@ -38,10 +38,11 @@ export class App implements OnInit {
       this.carregando.set(false);
     },
     error: err => {
-      console.log('Erro ao buscar tarefas, tentando novamente...', err);
-      setTimeout(() => this.READ_tarefas(), 3000); // ✅ tenta de novo após 3s
+      console.log('Backend dormindo, tentando em 5s...', err);
+      setTimeout(() => this.READ_tarefas(), 5000); // tenta de novo em 5s
     }
   });
+
 }
 
   DELETE_tarefa(tarefaAserRemovida: Tarefa) {
